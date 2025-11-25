@@ -36,8 +36,7 @@ try:
 except Exception as e:
     print("Sıralama JS fonksiyonu çalıştırılamadı:", e)
 
-# Dinamik oluşan URL'yi al
 populer_base_url = driver.current_url
-print("Popüler ürünler base URL:", populer_base_url)z
+print("Popular products base URL:", populer_base_url)
 
 driver.quit()
