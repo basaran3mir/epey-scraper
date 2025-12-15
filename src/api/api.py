@@ -11,7 +11,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return "Be-Bot API Home Page"
+    return "API Home Page"
 
 @app.route('/predict', methods=['POST'])
 def predict():
