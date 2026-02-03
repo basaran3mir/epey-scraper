@@ -11,7 +11,7 @@ from urllib.parse import urljoin
 # =========================
 BASE_URL = "https://www.epey.com"
 LIST_BASE = "https://www.epey.com/akilli-telefonlar"
-OUTPUT_CSV = "src/outputs/datasets/raw/epey_popular_phones_full.csv"
+OUTPUT_CSV = "src/outputs/datasets/raw/full_dataset.csv"
 
 # =========================
 # CLOUDSCRAPER
