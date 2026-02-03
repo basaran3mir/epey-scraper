@@ -82,10 +82,10 @@ def get_popular_products(limit=100):
             score = score_div["data-text"] if score_div else None
 
             products.append({
-                "urun_adi": name_el.get_text(strip=True),
-                "url": urljoin(BASE_URL, name_el["href"]),
-                "fiyat_tl": price,
-                "puan": score
+                "urun_ad": name_el.get_text(strip=True),
+                "urun_url": urljoin(BASE_URL, name_el["href"]),
+                "urun_fiyat": price,
+                "urun_puan": score
             })
 
             if len(products) >= limit:
@@ -156,7 +156,7 @@ def main():
     all_data = []
 
     for i, p in enumerate(products, start=1):
-        print(f"[{i}/{len(products)}] {p['urun_adi']}")
+        print(f"[{i}/{len(products)}] {p['urun_ad']}")
         try:
             detail = get_product_detail(p["url"])
             merged = {**p, **detail}

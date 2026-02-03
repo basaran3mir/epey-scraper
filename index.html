@@ -21,32 +21,65 @@
         <div class="card">
             <h2 data-key="form.title"></h2>
 
-            <div class="form-group">
-                <label data-key="form.productName.label"></label>
-                <input type="text" data-key-placeholder="form.productName.placeholder" />
-            </div>
+            <form id="productForm">
+                <p class="muted">Aşağıdaki alanları doldurun. (product_name, urun_adi, url, fiyat_tl, puan hariç)</p>
+                <div id="formFields"></div>
+                <div class="form-group">
+                    <button type="submit" id="submitBtn" data-key="form.submit"></button>
+                </div>
+            </form>
 
-            <div class="form-group">
-                <label data-key="form.target.label"></label>
-                <select>
-                    <option data-key="form.target.options.general"></option>
-                    <option data-key="form.target.options.professional"></option>
-                    <option data-key="form.target.options.student"></option>
-                    <option data-key="form.target.options.premium"></option>
-                </select>
-            </div>
+            <script>
+                (function(){
+                    const headerLine = `product_name,urun_adi,url,fiyat_tl,puan,ekran_ekran_boyutu,ekran_ekran_teknolojisi,ekran_ekran_çözünürlüğü,ekran_ekran_çözünürlüğü_standardı,ekran_piksel_yoğunluğu,ekran_ekran_yenileme_hızı,ekran_ekran_oranı_aspect_ratio,ekran_ekran_alanı,ekran_ekran_özellikleri,ekran_ekran_dayanıklılığı,ekran_renk_sayısı,ekran_ekran___gövde_oranı,batarya_batarya_kapasitesi_tipik,batarya_video_oynatma,batarya_şarj,batarya_batarya_teknolojisi,batarya_hızlı_şarj,batarya_hızlı_şarj_gücü_maks.,batarya_hızlı_şarj_özellikleri,batarya_kablosuz_şarj,batarya_değişir_batarya,kamera_kamera_çözünürlüğü,kamera_optik_görüntü_sabitleyici_ois,kamera_kamera_özellikleri,kamera_flaş,kamera_diyafram_açıklığı,kamera_video_kayıt_çözünürlüğü,kamera_video_fps_değeri,kamera_video_kayıt_özellikleri,kamera_video_kayıt_seçenekleri,kamera_ağır_çekim_kayıt_seçenekleri,kamera_i̇kinci_arka_kamera,kamera_i̇kinci_arka_kamera_çözünürlüğü,kamera_i̇kinci_arka_kamera_diyafram,kamera_i̇kinci_arka_kamera_özellikleri,kamera_ön_kamera_çözünürlüğü,kamera_ön_kamera_video_çözünürlüğü,kamera_ön_kamera_fps_değeri,kamera_ön_kamera_diyafram_açıklığı,kamera_ön_kamera_özellikleri,temel_donanim_yonga_seti_chipset,temel_donanim_cpu_frekansı,temel_donanim_cpu_çekirdeği,temel_donanim_ana_i̇şlemci_cpu,temel_donanim_1._yardımcı_i̇şlemci,temel_donanim_i̇şlemci_mimarisi,temel_donanim_grafik_i̇şlemcisi_gpu,temel_donanim_cpu_üretim_teknolojisi,temel_donanim_antutu_puanı_v10,temel_donanim_geekbench_6_single_core,temel_donanim_geekbench_6_multi_core,temel_donanim_bellek_ram,temel_donanim_dahili_depolama,temel_donanim_hafıza_kartı_desteği,temel_donanim_diğer_hafıza_seçenekleri,tasarim_boy,tasarim_en,tasarim_kalınlık,tasarim_ağırlık,tasarim_renk_seçenekleri,tasarim_gövde_malzemesi_kapak,tasarim_gövde_malzemesi_çerçeve,ağ_bağlantilari_2g,ağ_bağlantilari_3g,ağ_bağlantilari_4g,ağ_bağlantilari_4g_özellikleri,ağ_bağlantilari_4.5g_desteği,ağ_bağlantilari_5g,i̇şleti̇m_si̇stemi̇_i̇şletim_sistemi,i̇şleti̇m_si̇stemi̇_i̇şletim_sistemi_versiyonu,kablosuz_bağlantilar_wi_fi_kanalları,kablosuz_bağlantilar_wi_fi_özellikleri,kablosuz_bağlantilar_nfc,kablosuz_bağlantilar_bluetooth_versiyonu,kablosuz_bağlantilar_kızılötesi,kablosuz_bağlantilar_navigasyon_özellikleri,çoklu_ortam_radyo,çoklu_ortam_hoparlör_özellikleri,çoklu_ortam_ses_çıkışı,özelli̇kler_suya_dayanıklılık,özelli̇kler_suya_dayanıklılık_seviyesi,özelli̇kler_toza_dayanıklılık,özelli̇kler_toza_dayanıklılık_seviyesi,özelli̇kler_görüntülü_konuşma_uygulama,özelli̇kler_sensörler,özelli̇kler_parmak_izi_okuyucu,özelli̇kler_bildirim_işığı_led,özelli̇kler_sar_değeri_10g_baş,özelli̇kler_sar_değeri_10g_vücut,özelli̇kler_servis_ve_uygulamalar,özelli̇kler_kutu_i̇çeriği,di̇ğer_bağlantilar_usb_versiyonu,di̇ğer_bağlantilar_usb_bağlantı_tipi,di̇ğer_bağlantilar_usb_özellikleri,di̇ğer_bağlantilar_hat_sayısı,di̇ğer_bağlantilar_sim,temel_bi̇lgi̇ler_çıkış_yılı,temel_bi̇lgi̇ler_duyurulma_tarihi,temel_bi̇lgi̇ler_seri,temel_bi̇lgi̇ler_alt_seri,batarya_müzik_oynatma,temel_donanim_antutu_puanı_v11,i̇şleti̇m_si̇stemi̇_yükseltilebilir_versiyon,kamera_üçüncü_arka_kamera,kamera_üçüncü_arka_kamera_çözünürlüğü,kamera_üçüncü_arka_kamera_diyafram,kamera_üçüncü_arka_kamera_özellikleri,temel_donanim_dahili_depolama_biçimi,ağ_bağlantilari_2g_frekansları,ağ_bağlantilari_3g_frekansları,ağ_bağlantilari_4g_frekansları,i̇şleti̇m_si̇stemi̇_kullanıcı_arayüzü,i̇şleti̇m_si̇stemi̇_lansman_arayüz_versiyonu,özelli̇kler_parmak_izi_okuyucu_özellikleri,kamera_kamera_sensör_boyutu,temel_donanim_ram_tipi`;
 
-            <div class="form-group">
-                <label data-key="form.tech.label"></label>
-                <textarea data-key-placeholder="form.tech.placeholder"></textarea>
-            </div>
+                    const exclude = ['product_name','urun_adi','url','fiyat_tl','puan'];
+                    const cols = headerLine.split(',').map(s=>s.trim()).filter(c=>c && !exclude.includes(c));
+                    const groups = {};
+                    cols.forEach(c=>{
+                        const cat = c.split('_')[0];
+                        if(!groups[cat]) groups[cat]=[];
+                        groups[cat].push(c);
+                    });
 
-            <div class="form-group">
-                <label data-key="form.advantage.label"></label>
-                <textarea data-key-placeholder="form.advantage.placeholder"></textarea>
-            </div>
+                    const container = document.getElementById('formFields');
+                    Object.keys(groups).forEach(cat=>{
+                        const fs = document.createElement('fieldset');
+                        const legend = document.createElement('legend');
+                        legend.textContent = cat.replace(/\b\w/g, l=>l.toUpperCase());
+                        fs.appendChild(legend);
 
-            <button id="generateBtn" data-key="form.submit"></button>
+                        groups[cat].forEach(field=>{
+                            const div = document.createElement('div');
+                            div.className = 'form-group';
+                            const label = document.createElement('label');
+                            label.htmlFor = field;
+                            label.textContent = field.replace(/_/g,' ');
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.name = field;
+                            input.id = field;
+                            input.placeholder = field.replace(/_/g,' ');
+                            div.appendChild(label);
+                            div.appendChild(input);
+                            fs.appendChild(div);
+                        });
+
+                        container.appendChild(fs);
+                    });
+
+                    // simple submit handler (no extra actions requested)
+                    document.getElementById('productForm').addEventListener('submit', function(e){
+                        e.preventDefault();
+                        // For now just serialize and log
+                        const fd = new FormData(this);
+                        const obj = {};
+                        for(const [k,v] of fd.entries()) obj[k]=v;
+                        console.log('form-submitted', obj);
+                        alert('Form gönderildi (şimdilik kayıt yok).');
+                    });
+                })();
+            </script>
         </div>
 
         <!-- INFO -->
